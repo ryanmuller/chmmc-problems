@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+<h1>Make a test!</h1>
+
+<form action="/gentex/" method="POST">
+<p>Name of the test: <input type="text" name="test_name" /></p>
+	
+	<style>
+	#gen-options { clear: both;}
+	
+	
+	#sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 300px;}
+		#sortable1 li, #sortable2 li { margin: 5px; padding: 5px; font-size: .8em; width: 280px; }
+		
+		.problem-id { display: none; }
+
+	</style>
+	<script>
+	
+	$(function() {
+		$( "ul.droptrue" ).sortable({
+			connectWith: "ul",
+			update: function(event, ui) {
+				$("#problem_list").val("");
+				$("#sortable1 > li").each(function(index) {
+					//alert($(this + " .problem-id").text());
+					current_text = $("#problem_list").val();
+					new_text = current_text + " " + $(this).children(".problem-id").text();
+					$("#problem_list").val(new_text);
+				});
+			}
+		});
+
+		$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+	});
+
+	
+	</script>
+	
+<div id="problem-selection">
+<p>Drag and sort problems in the left column to include them on the test.</p>
+
+<ul id="sortable1" class="droptrue">
+</ul>
+
+<ul id="sortable2" class="droptrue">
+{% for problem in problems %}
+	<li class="ui-state-default">{{ problem.description }} <span class="problem-id">{{ problem.id }}</span></li>
+{% endfor %}
+</ul>
+
+</div>
+
+<div id="gen-options">
+	
+<p>List of problems: <input type="text" id="problem_list" name="problem_list" /></p>
+	
+<p>Give me 
+<select name="type">
+	<option value="problems">Problems</option>
+	<option value="solutions">Solutions</option>
+</select>
+</p>
+
+<input type="submit" value="Gimme the tex" />
+</div>
+</form>
+
+{% endblock %}
+

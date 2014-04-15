@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+
+<h1>Write a problem!</h1>
+
+<ul>
+	<li>Please use LaTeX for math symbol parts (surround the code in dollar signs (inline) or double dollar signs (display mode))</li>
+	<li>Use the convention of requesting an answer by saying 'Compute...' rather than posing a question.
+	<li>List your source if you adapt a problem from something. Don't directly copy a problem from somewhere.</li>
+	<li>High school level problems. No calculus.</li>
+</ul>
+
+<form action="/create/submit/" method="POST">
+<p>A short description to identify this problem: <input type="text" name="description" /></p>
+	
+<p>The problem:</p>
+
+<textarea name="problem"></textarea>
+
+<p>The solution:</p>
+
+<textarea name="solution"></textarea>
+
+<p>Category:</p>
+
+<p>
+<select name="category">
+	<option value="not specified">-- choose one --</option>
+	<option value="Algebra">Algebra</option>
+	<option value="Geometry">Geometry</option>
+	<option value="Combinatorics">Combinatorics</option>
+	<option value="Number Theory">Number Theory</option>
+	<option value="Other">Other</option>
+</select>
+</p>
+
+<p>Any other comments (optional):</p>
+
+<textarea name="comments"></textarea>
+
+<p>
+<input type="submit" value="I've done it!">
+</p>
+</form>
+
+{% endblock %}
+

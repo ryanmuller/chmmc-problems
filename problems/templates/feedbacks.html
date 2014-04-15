@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Evaluations for {{ problem.description }}</h1>
+
+<p>Problem: {{ problem.problem }}</p>
+<p>Solution: {{ problem.solution }}</p>
+
+{% for evaluation in evaluations %}
+<hr />
+<h3>Feedback from {{ evaluation.evaluator }}</h3>
+<p>Answer: {{ evaluation.answer }}</p>
+<p>{{ evaluation.comments }}</p>
+<p>Difficulty: {{ evaluation.difficulty }} <br />Time: {{ evaluation.time }} minutes</p>
+
+{% endfor %}
+
+{% endblock %}

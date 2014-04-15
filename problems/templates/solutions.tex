@@ -1,0 +1,54 @@
+\documentclass[11pt]{exam}
+\usepackage{listings, amsfonts, amsmath}
+\usepackage{pdfsync}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+%\newif\ifpdf
+%\ifx\pdfoutput\undefined
+%\pdffalse % we are not running PDFLaTeX
+%\else
+%\pdfoutput=1 % we are running PDFLaTeX
+%\pdftrue
+%\fi
+
+\usepackage{tikz,tkz-2d}
+\usetikzlibrary{arrows,plotmarks}%
+%\usepackage[english]{babel}
+%\usepackage[np,autolanguage]{numprint}
+
+\ifpdf
+\usepackage{subfigure}
+%\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+
+\firstpageheader{\bf\small {{ test_name }} }{\bf\Large Caltech Harvey Mudd\\ Mathematics Competition}{\bf\small
+  November 13, 2010 }
+%\runningheader{CS 151}{}{Exam-num}
+
+\addpoints
+
+\begin{document}
+
+\begin{center} 
+  \fbox{\fbox{\parbox{5.5in}{\centering For proofreading only. Do not copy or share.}}}
+\end{center} 
+
+\vspace{0.1in} 
+%\hbox to \textwidth{Name:\enspace\hrulefill} 
+
+% Questions start here:
+\begin{questions}
+
+{% for problem in problems %}  
+\question 
+ {{ problem.solution }}
+{% endfor %}
+
+\end{questions}
+
+\end{document}
+

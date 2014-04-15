@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h1>Problems</h1>
+
+<p>Don't just sit there! Test a <a href="/problem/">problem</a></p>
+
+<table>
+	<tr>
+		<th>Problem</th>
+		<th>Type</th>
+		<th>Evaluations</th>
+		<th>Avg difficulty</th>
+		<th>Avg time</th>
+	</tr>
+	
+{% for problem in problems %}
+	<tr>
+		<td><a href="/problem/{{ problem.id }}/">{{ problem.description }}</a></td>
+		<td>{{ problem.category }}</td>
+		<td><a href="/feedback/{{ problem.id }}/">{{ problem.evaluation_set.count }}</a></td>
+		<td>
+			{% ifequal problem.avg_difficulty -1 %}
+			-
+			{% else %}
+			{{ problem.avg_difficulty }}
+			{% endifequal %}
+		</td>
+		<td>
+				{% ifequal problem.avg_time -1 %}
+				-
+				{% else %}
+				{{ problem.avg_time }}
+				{% endifequal %}
+			</td>
+	</tr>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body %}
+<script type="text/javascript">
+
+$(document).ready(function() {
+$("#solution").hide();
+});
+
+function revealSolution() {
+if ($("#soln_reveal").text() == "show") {
+$("#solution").show();
+$("#soln_reveal").text("hide");
+} else 
+{
+	$("#solution").hide();
+	$("#soln_reveal").text("show");
+}
+}
+	
+</script>
+
+
+<h1>Test a problem!</h1>
+
+<p><b>The problem</b>: {{ problem.problem }}</p>
+
+<form action="/problem/submit/" method="POST">
+<input type="hidden" value="{{ problem.id }}" name="problem" />
+	
+<p><b>What was your answer?</b></p>
+<p><input type="text" name="answer"></p>
+
+<p><b>The official solution</b>: <a href="#" onclick="revealSolution()" id="soln_reveal">show</a></p>
+<p id="solution">{{ problem.solution }}</p>
+
+<p><b>Tell us how you feel, including suggestions for changing the wording of the problem</b></p>
+
+<textarea name="comments"></textarea>
+
+<p><b>Was it hard for you?</b></p>
+<p><select name="difficulty">
+		<option>-- choose one --</option>
+		<option value="1">even easier!</option>
+    <option value="2">easy AMC</option>
+    <option value="3">hard AMC</option>
+		<option value="4">AIME</option>
+		<option value="5">even harder!</option>
+  </select>
+</p>
+
+<p><b>How long did it take?</b></p>
+<p><input type="text" name="time"> minutes (use up to one decimal)</p>
+
+<input type="submit" value="I've done it!" />
+</form>
+
+
+{% endblock %}

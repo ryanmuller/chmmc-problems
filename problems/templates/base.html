@@ -1,0 +1,27 @@
+
+
+<html> <head>
+<title>{% block title %}CHMMC{% endblock %}</title>
+<link rel="stylesheet" href="/site_media/static/style.css">
+<script type="text/javascript" src="/site_media/static/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/site_media/static/js/jquery-ui-1.8.6.custom.min.js"></script>
+<script type="text/javascript" src="/site_media/static/jsMath/easy/load.js"></script>
+</head>
+<body>
+	
+{% if request.user.is_authenticated %}
+	
+<div class="title">CHMMC Problem Submission - Logged in as {{ request.user.username }}</div>
+<div class="container">
+{% block body %}{% endblock %}
+</div>
+
+
+{% else %}
+
+<p>Please <a href="/admin/">log in</a> if you are supposed to be here</p>
+
+{% endif %}
+
+</body>
+</html>	
